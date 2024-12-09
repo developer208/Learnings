@@ -1,4 +1,79 @@
 What's Their Behind Curl Command ?
 
 -->
+
+Here's a detailed breakdown of what happens when you execute a `curl` command in the terminal:
+
+1. **Command Parsing**
+- Shell parses the `curl` command
+- Identifies the URL, HTTP method, and any additional flags/parameters
+- Prepares network request parameters
+
+2. **DNS Resolution**
+- Kernel's resolver library initiates DNS lookup
+- Checks local DNS cache first
+- Queries configured DNS servers (usually `/etc/resolv.conf`)
+- Converts domain name to IP address using recursive/iterative DNS resolution
+
+3. **Socket Creation**
+- Operating system creates a network socket
+- Allocates kernel-level socket descriptor
+- Chooses an available local port number for the connection
+
+4. **TCP Connection Establishment**
+- Three-way TCP handshake occurs:
+  1. Client sends SYN packet with initial sequence number
+  2. Server responds with SYN-ACK packet
+  3. Client sends final ACK packet
+- Establishes full-duplex TCP connection
+- Negotiates Maximum Segment Size (MSS)
+- Sets up congestion control parameters
+
+5. **SSL/TLS Negotiation** (for HTTPS)
+- Performs TLS handshake if HTTPS
+- Exchanges cryptographic parameters
+- Verifies server's SSL certificate
+- Establishes encrypted communication channel
+- Agrees on symmetric encryption keys
+
+6. **HTTP Request Generation**
+- Constructs complete HTTP request
+- Includes headers (User-Agent, Accept, etc.)
+- Adds any request body/payload
+- Formats request according to HTTP protocol specifications
+
+7. **Data Transmission**
+- Breaks request into TCP segments
+- Sends data through network stack
+- Manages packet fragmentation
+- Handles network layer routing
+
+8. **Server Processing**
+- Remote server receives TCP packets
+- Reconstructs HTTP request
+- Processes request
+- Generates HTTP response
+
+9. **Response Transmission**
+- Server sends response back through network
+- TCP ensures reliable, ordered packet delivery
+- Manages congestion control
+- Handles potential packet loss/retransmission
+
+10. **Local Processing**
+- Curl receives response packets
+- Reassembles complete HTTP response
+- Processes response headers
+- Displays/handles response body based on command options
+
+Key Networking Concepts Involved:
+- TCP/IP protocol suite
+- DNS resolution
+- Socket programming
+- Network routing
+- Packet switching
+- SSL/TLS encryption
+- HTTP/HTTPS protocols
+
+Would you like me to elaborate on any specific part of this process?
     
